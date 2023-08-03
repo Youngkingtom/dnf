@@ -40,20 +40,6 @@ jobs:
           command: |
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run:
-          name: Build Base Image
-          command: |
-            docker build -f $(pwd)/build/Centos7-DNF-Base/Dockerfile -t youngkingdom/dnf:centos7-Base-${CIRCLE_SHA1: 0: 7} $(pwd)
-            docker tag youngkingdom/dnf:centos7-Base-${CIRCLE_SHA1: 0: 7} youngkingdom/dnf:centos7-Base-latest
-      - run:
-          name: Archive Docker Base image
-          command: |
-            docker save -o base-centos7.tar youngkingdom/dnf:centos7-Base-${CIRCLE_SHA1: 0: 7}
-      - run:
-          name: Push Base Image
-          command: |
-            docker push youngkingdom/dnf:centos7-Base-${CIRCLE_SHA1: 0: 7}
-            docker push youngkingdom/dnf:centos7-Base-latest
-      - run:
           name: Build Image
           command: |
             docker build -f $(pwd)/build/Centos7-DNF/Dockerfile -t youngkingdom/dnf:centos7-${CIRCLE_SHA1: 0: 7} $(pwd)
@@ -88,8 +74,6 @@ jobs:
           name: Tag & Push Image
           command: |
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker tag youngkingdom/dnf:centos7-Base-${CIRCLE_SHA1: 0: 7} youngkingdom/dnf:centos7-Base-latest
-            docker push youngkingdom/dnf:centos7-Base-$CIRCLE_TAG
             docker tag youngkingdom/dnf:centos7-${CIRCLE_SHA1: 0: 7} youngkingdom/dnf:centos7-$CIRCLE_TAG
             docker push youngkingdom/dnf:centos7-$CIRCLE_TAG
 
