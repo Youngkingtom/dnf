@@ -42,5 +42,4 @@ RUN chmod -R 777 /tmp
 RUN mkdir /data
 # 切换工作目录
 WORKDIR /root
-ENTRYPOINT ["/usr/sbin/init"] 
 CMD ["/bin/bash", "/docker-entrypoint.sh"]
