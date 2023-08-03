@@ -1,7 +1,7 @@
 # Base Image
-FROM youngkingdom/centos:7.9-DNF-Base
+FROM youngkingdom/centos7:latest
 
-MAINTAINER 1995chen
+MAINTAINER youngkingdom
 
 # 定义默认环境变量
 ENV AUTO_PUBLIC_IP=false
