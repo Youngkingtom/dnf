@@ -43,7 +43,7 @@ jobs:
           name: Build Image
           command: |
             docker build -f $(pwd)/build/Centos7-DNF/Dockerfile -t youngkingdom/dnf:centos7-${CIRCLE_SHA1: 0: 7} $(pwd)
-            docker tag 1995chen/dnf:centos7-${CIRCLE_SHA1: 0: 7} youngkingdom/dnf:centos7-latest
+            docker tag youngkingdom/dnf:centos7-${CIRCLE_SHA1: 0: 7} youngkingdom/dnf:centos7-latest
       - run:
           name: Archive Docker image
           command: |
