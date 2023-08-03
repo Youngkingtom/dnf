@@ -77,12 +77,8 @@ update d_taiwan.db_connect set db_ip="127.0.0.1", db_port="3306", db_passwd="$DE
 select * from d_taiwan.db_connect;
 EOF
 
-# 开启ssh服务
-yum -y install openssh-server openssh-clients
-sed -i 's/#PermitRootLogin/PermitRootLogin/g' /etc/ssh/sshd_config
-sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
-echo "y990708" | passwd --stdin root
-systemctl start sshd
+# 更改root密码
+echo $ROOT_PASSWORD | passwd --stdin root
 
 cd /root
 # 启动服务
