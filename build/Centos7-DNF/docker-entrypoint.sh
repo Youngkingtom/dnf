@@ -78,7 +78,10 @@ select * from d_taiwan.db_connect;
 EOF
 
 # 更改root密码
-echo $ROOT_PASSWORD | passwd --stdin root
+if [ $ROOT_PASSWORD != "123456" ];
+then
+  echo $ROOT_PASSWORD | passwd --stdin root
+fi
 
 cd /root
 # 启动服务
